@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="zxx">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Rahim Homes - Our Portfolio - Your Home, Our Priority</title>
+  <link href="//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style-starter.css">
+  <style>
+    /* Custom Gallery Styles and Animations */
+    .gallery-filter-buttons {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .gallery-filter-buttons button {
+      background: #eee;
+      color: #333;
+      border: none;
+      padding: 10px 25px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .gallery-filter-buttons button:hover,
+    .gallery-filter-buttons button.active {
+      background: #ff5722; /* Your primary brand color */
+      color: #fff;
+    }
+
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      animation: fadeIn 0.8s ease-in-out; /* Fade in when images load/filter */
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px; /* Standardize image height */
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease; /* Zoom effect on hover */
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay h4 {
+      color: #fff;
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      transform: translateY(20px);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    .gallery-item:hover .gallery-overlay h4 {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .gallery-overlay p {
+      color: #ddd;
+      font-size: 0.9em;
+      transform: translateY(20px);
+      transition: transform 0.4s ease 0.1s, opacity 0.4s ease 0.1s;
+      opacity: 0;
+    }
+
+    .gallery-item:hover .gallery-overlay p {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Initial hidden state for items, to be shown by JS */
+    .gallery-item.hidden {
+      display: none;
+    }
+
+    /* Keyframe for fade-in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Section for testimonials */
+    .w3l-testimonials {
+        background: #f9f9f9; /* Light background for contrast */
+    }
+    .testimonials-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .testimonial-item {
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        margin-top: 30px;
+    }
+    .testimonial-item img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 3px solid #ff5722;
+    }
+    .testimonial-item p {
+        font-style: italic;
+        color: #555;
+        margin-bottom: 15px;
+        line-height: 1.8;
+    }
+    .testimonial-item h5 {
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    .testimonial-item span {
+        font-size: 0.9em;
+        color: #777;
+    }
+
+    /* Call to Action Section */
+    .w3l-cta-bottom {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/cta-background.jpg') no-repeat center; /* Replace with a relevant image */
+      background-size: cover;
+      color: #fff;
+      text-align: center;
+      padding: 80px 0;
+    }
+    .w3l-cta-bottom .hny-title {
+      color: #fff;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    .w3l-cta-bottom p {
+      font-size: 1.1em;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+    }
+    .w3l-cta-bottom .btn-style-1 {
+      background: #ff5722;
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .w3l-cta-bottom .btn-style-1:hover {
+      background: #e64a19;
+    }
+
+  </style>
+</head>
+
+<body>
+  <header id="site-header" class="fixed-top">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg stroke">
+        <h1><a class="navbar-brand mr-lg-5" href="index.html" aria-label="Rahim Homes homepage">
+            <span>R</span>ahim Homes
+          </a></h1>
+        <button class="navbar-toggler collapsed bg-gradient" type="button" data-toggle="collapse"
+          data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon fa icon-expand fa-bars" aria-hidden="true"></span>
+          <span class="navbar-toggler-icon fa icon-close fa-times" aria-hidden="true"></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mx-lg-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="Gallery.html">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item search-right">
+              <a href="#search" title="Search"><span class="fa fa-search" aria-hidden="true"></span><span class="sr-only">Search button</span></a>
+              <div id="search" class="pop-overlay" aria-modal="true" role="dialog" aria-label="Search popup">
+                <div class="popup">
+                  <form action="#" method="GET" class="search-box">
+                    <label for="search-input" class="sr-only">Enter Keyword</label>
+                    <input type="search" id="search-input" placeholder="Enter Keyword" name="search" required autofocus>
+                    <button type="submit" class="btn" aria-label="Submit search"><span class="fa fa-search" aria-hidden="true"></span></button>
+                  </form>
+                </div>
+                <a class="close" href="#close" aria-label="Close search popup">×</a>
+              </div>
+              </li>
+          </ul>
+        </div>
+        <div class="mobile-position">
+          <nav class="navigation">
+            <div class="theme-switch-wrapper">
+              <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" aria-label="Toggle light and dark theme">
+                <div class="mode-container">
+                  <i class="gg-sun" aria-hidden="true"></i>
+                  <i class="gg-moon" aria-hidden="true"></i>
+                </div>
+              </label>
+            </div>
+          </nav>
+        </div>
+        </nav>
+    </div>
+  </header>
+  <section class="w3l-about-breadcrumb text-left">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
+      <div class="container py-2">
+        <h2 class="title">Our Portfolio</h2>
+        <ul class="breadcrumbs-custom-path mt-2">
+          <li><a href="index.html">Home</a></li>
+          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Gallery </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="w3l-gallery py-5">
+    <div class="container py-lg-5 py-md-4">
+      <div class="title-content text-center mb-5">
+        <h6 class="sub-title">Our Work</h6>
+        <h3 class="hny-title">See Our Craftsmanship in Action</h3>
+        <p class="mt-3">Explore our diverse portfolio of completed projects, showcasing the quality and creativity Rahim Homes brings to every exterior design and renovation in Ghana. Filter by category to find inspiration for your own space!</p>
+      </div>
+
+      <div class="gallery-filter-buttons">
+        <button class="active" data-filter="all">All Projects</button>
+        <button data-filter="renovations">Exterior Renovations</button>
+        <button data-filter="painting">Painting & Finishing</button>
+        <button data-filter="landscaping">Landscaping & Hardscaping</button>
+        <button data-filter="roofing">Roofing & Waterproofing</button>
+        <button data-filter="modern">Modern Designs</button>
+        <button data-filter="traditional">Traditional Designs</button>
+      </div>
+
+      <div class="gallery-container">
+        <div class="gallery-item" data-category="renovations modern">
+          <img src="assets/images/Modern Home Transformation.jpg" alt="Modern exterior home renovation by Rahim Homes in Ghana">
+          <div class="gallery-overlay">
+            <h4>Modern Home Transformation</h4>
+            <p>Complete exterior renovation with sleek lines and contemporary finishes.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="painting traditional">
+          <img src="assets/images/facade.jpg" alt="Traditional Ghanaian home painting by Rahim Homes">
+          <div class="gallery-overlay">
+            <h4>Vibrant Traditional Facade</h4>
+            <p>Fresh paint job enhancing the classic charm of a Ghanaian home.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="landscaping modern">
+          <img src="assets/images/Lush Modern Landscape.jpg" alt="Modern landscape design with minimalist features">
+          <div class="gallery-overlay">
+            <h4>Lush Modern Landscape</h4>
+            <p>Contemporary garden design complementing the home's architecture.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="roofing">
+          <img src="assets/images/real estate robust roof installation.jpeg" alt="Durable roofing installation by Rahim Homes">
+          <div class="gallery-overlay">
+            <h4>Robust Roof Installation</h4>
+            <p>New, weather-resistant roofing ensuring long-term protection.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="renovations traditional">
+          <img src="assets/images/real estate restored heritage home.jpeg" alt="Traditional home exterior renovation in Ghana">
+          <div class="gallery-overlay">
+            <h4>Restored Heritage Home</h4>
+            <p>Thoughtful renovation preserving the architectural integrity.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="painting modern">
+          <img src="assets/images/Bold Modern Exterior.jpg" alt="Modern exterior painting with a bold color palette">
+          <div class="gallery-overlay">
+            <h4>Bold Modern Exterior</h4>
+            <p>A striking color palette for a contemporary residential property.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="landscaping traditional">
+          <img src="assets/images/real estate Inviting Courtyard Garden.jpeg" alt="Traditional garden and pathway design in Accra">
+          <div class="gallery-overlay">
+            <h4>Inviting Courtyard Garden</h4>
+            <p>Classic landscaping with local flora and serene pathways.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="roofing">
+          <img src="assets/images/real estate advanced waterproofing.jpg" alt="Waterproofing solution for a building exterior">
+          <div class="gallery-overlay">
+            <h4>Advanced Waterproofing</h4>
+            <p>Ensuring durability and protection against Ghana's rainy seasons.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="modern renovations">
+          <img src="assets/images/minimalist chic renovation.jpeg" alt="Sleek modern home with new exterior finishes">
+          <div class="gallery-overlay">
+            <h4>Minimalist Chic Renovation</h4>
+            <p>Clean lines and understated elegance defining a modern home.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="traditional painting">
+          <img src="assets/images/warm & Welcoming Hues.png" alt="Warm tones for a residential exterior in Ghana">
+          <div class="gallery-overlay">
+            <h4>Warm & Welcoming Hues</h4>
+            <p>Exterior painting with earthy tones, complementing the Ghanaian landscape.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="landscaping modern">
+          <img src="assets/images/contemporary patio & deck.png" alt="Modern patio with outdoor seating and minimalist plants">
+          <div class="gallery-overlay">
+            <h4>Contemporary Patio & Deck</h4>
+            <p>Sleek outdoor living space perfect for relaxation and entertaining.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="roofing traditional">
+          <img src="assets/images/Restored Tiled Roof.jpeg" alt="Traditional style roof repair with red tiles">
+          <div class="gallery-overlay">
+            <h4>Restored Tiled Roof</h4>
+            <p>Expert repair and maintenance for a classic, durable roofing system.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  ---
+
+  <section class="w3l-testimonials py-5">
+    <div class="container py-lg-5 py-md-4">
+      <div class="title-content text-center mb-5">
+        <h6 class="sub-title">What Our Clients Say</h6>
+        <h3 class="hny-title">Hear From Happy Homeowners</h3>
+        <p class="mt-3">Our success is built on the satisfaction of our clients. Read what people are saying about their experience with Rahim Homes and the beautiful transformations we've brought to their properties in Ghana.</p>
+      </div>
+      <div class="testimonials-content">
+        <div class="testimonial-item">
+          <img src="assets/images/th.png" alt="Client testimonial image"> <p>"Rahim Homes exceeded all our expectations! Their team transformed our dull exterior into a vibrant, modern masterpiece. The attention to detail and professionalism were truly outstanding. Highly recommend for anyone in Accra looking for quality work!"</p>
+          <h5>Akosua Mensah</h5>
+          <span>Accra, Ghana</span>
+        </div>
+        <div class="testimonial-item">
+          <img src="assets/images/team2.jpg" alt="Client testimonial image"> <p>"We engaged Rahim Homes for a major roof overhaul and some landscaping. The project was managed flawlessly, on time, and within budget. The new roof looks fantastic and the garden is now our favorite part of the house. Thank you, Rahim Homes!"</p>
+          <h5>Kwame Nkrumah</h5>
+          <span>Tema, Ghana</span>
+        </div>
+        <div class="testimonial-item">
+          <img src="assets/images/th2.png" alt="Client testimonial image"> <p>"From the initial consultation to the final brushstroke, Rahim Homes demonstrated incredible expertise and care. Our home's exterior painting was done beautifully, and they even advised us on colors that complement our neighborhood. Professional and reliable!"</p>
+          <h5>Ama Serwaa</h5>
+          <span>Kumasi, Ghana</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  ---
+
+  <section class="w3l-cta-bottom py-5">
+    <div class="container py-lg-5 py-md-4">
+      <h3 class="hny-title">Ready to Transform Your Home's Exterior?</h3>
+      <p>Inspired by what you've seen? Don't let your dream exterior remain just a dream. Contact Rahim Homes today for a personalized consultation and let us bring your vision to life with our expert craftsmanship.</p>
+      <a href="contact.html" class="btn btn-style-1">Request a Free Consultation Now</a>
+    </div>
+  </section>
+  <section class="w3l-footer7">
+    <div class="footer7 py-5">
+      <div class="container py-lg-3">
+        <div class="footer-destinations mb-5 text-center">
+          <h5>Designing Your Exterior Dreams Into Reality! </h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="Gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+        <div class="d-grid grid-col-3 footer-top7">
+          <div class="footer-list7 mt-4">
+            <h6 class="footer-title7">Quick links</h6>
+            <ul>
+              <li><a href="about.html">About</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="#privacy">Privacy & Policy</a></li>
+              <li><a href="contact.html">Map & Location</a></li>
+            </ul>
+          </div>
+          <div class="footer-list7 mt-4">
+            <h6 class="footer-title7">Newsletter sign up</h6>
+            <form action="#" method="post" class="footer-newsletter">
+              <label for="newsletter-email-footer" class="sr-only">Email address</label>
+              <input type="email" id="newsletter-email-footer" placeholder="Email address" required />
+              <button class="btn btn-style" type="submit">subscribe</button>
+            </form>
+          </div>
+          <div class="footer-list7 mt-4">
+            <h6 class="footer-title7">Call Us:</h6>
+            <ul class="phone-numbers">
+              <li><a href="tel:+233244123456"> +233 (0)24 412 3456</a></li>
+              <li><a href="tel:+233501234567"> +233 (0)50 123 4567</a></li>
+            </ul>
+            <h6 class="footer-title7">Connect with us</h6>
+            <div class="main-social-footer7">
+              <a href="#facebook" title="Facebook" class="footer-fb" aria-label="Connect on Facebook"><span class="fa fa-facebook"
+                  aria-hidden="true"></span></a>
+              <a href="#twitter" title="Twitter" class="footer-tw" aria-label="Connect on Twitter"><span class="fa fa-twitter"
+                  aria-hidden="true"></span></a>
+              <a href="#instagram" title="Instagram" class="footer-gg" aria-label="Connect on Instagram"><span class="fa fa-instagram"
+                  aria-hidden="true"></span></a>
+              <a href="#linkedin" title="Linkedin" class="footer-lin" aria-label="Connect on LinkedIn"><span class="fa fa-linkedin"
+                  aria-hidden="true"></span></a>
+              <a href="#youtube" title="YouTube" class="footer-pin" aria-label="Connect on YouTube"><span class="fa fa-youtube"
+                  aria-hidden="true"></span></a>
+            </div>
+          </div>
+        </div>
+        <div class="copy-right-hny text-center">
+          <p>© 2025 Rahim Homes. All rights reserved.<a href="" target="_blank" rel="noopener noreferrer"></a></p>
+        </div>
+      </div>
+      <button onclick="topFunction()" id="movetop" title="Go to top" aria-label="Scroll to top">
+        <span class="fa fa-angle-up" aria-hidden="true"></span>
+      </button>
+      <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+          scrollFunction()
+        };
+
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+          } else {
+            document.getElementById("movetop").style.display = "none";
+          }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }
+      </script>
+      <script>
+        $(function () {
+          $('.navbar-toggler').click(function () {
+            $('body').toggleClass('noscroll');
+          })
+        });
+        $(document).on("ready", function () {
+          if ($(window).width() > 991) {
+            $("header").removeClass("active");
+          }
+          $(window).on("resize", function () {
+            if ($(window).width() > 991) {
+              $("header").removeClass("active");
+            }
+          });
+        });
+      </script>
+      </div>
+  </section>
+  <script src="assets/js/jquery-3.3.1.min.js"></script>
+  <script src="assets/js/theme-change.js"></script>
+  <script>
+    $(window).on("scroll", function () {
+      var scroll = $(window).scrollTop();
+      if (scroll >= 80) {
+        $("#site-header").addClass("nav-fixed");
+      } else {
+        $("#site-header").removeClass("nav-fixed");
+      }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function () {
+      $("header").toggleClass("active");
+    });
+    $(document).on("ready", function () {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+      $(window).on("resize", function () {
+        if ($(window).width() > 991) {
+          $("header").removeClass("active");
+        }
+      });
+    });
+  </script>
+  <script src="assets/js/bootstrap.min.js"></script>
+
+  <script>
+    // Gallery Filtering Logic
+    $(document).ready(function() {
+      const $galleryItems = $('.gallery-item');
+      const $filterButtons = $('.gallery-filter-buttons button');
+      const $galleryContainer = $('.gallery-container');
+
+      $filterButtons.on('click', function() {
+        const filter = $(this).data('filter');
+
+        $filterButtons.removeClass('active');
+        $(this).addClass('active');
+
+        // Apply fade-out animation before filtering
+        $galleryContainer.css('opacity', 0);
+
+        setTimeout(() => {
+          $galleryItems.each(function() {
+            if (filter === 'all' || $(this).data('category').includes(filter)) {
+              $(this).removeClass('hidden');
+            } else {
+              $(this).addClass('hidden');
+            }
+          });
+          // Apply fade-in animation after filtering
+          $galleryContainer.css('opacity', 1);
+        }, 300); // Small delay to allow fade-out
+      });
+    });
+  </script>
+
+</body>
+
+</html>

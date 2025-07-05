@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Rahim Homes - Our Blog: Exterior Design Insights for Ghana</title>
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style-starter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        /* --- Blog Page Specific Styles (from previous response, ensure this is in style-starter.css or included directly) --- */
+
+        /* Breadcrumbs for Blog */
+        .w3l-breadcrumb {
+            background: #f8f9fa; /* Light background for breadcrumbs */
+            padding: 30px 0;
+            margin-bottom: 50px;
+        }
+        .w3l-breadcrumb .w3ls-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--heading-color);
+            margin-bottom: 10px;
+        }
+        .w3l-breadcrumb ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+        .w3l-breadcrumb ul li {
+            font-size: 0.95em;
+            color: #666;
+        }
+        .w3l-breadcrumb ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .w3l-breadcrumb ul li.active {
+            font-weight: 600;
+            color: var(--heading-color);
+        }
+        .w3l-breadcrumb ul li:not(:last-child)::after {
+            content: '/';
+            margin: 0 10px;
+            color: #ccc;
+        }
+
+        /* Blog Post Card Styling (for blog.html) */
+        .w3l-blog .item .card {
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%; /* Ensure cards are same height */
+            display: flex;
+            flex-direction: column;
+        }
+        .w3l-blog .item .card:hover {
+            transform: translateY(-8px); /* Lift effect on hover */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+        }
+        .w3l-blog .card-header {
+            padding: 0;
+            border-bottom: none;
+            position: relative;
+        }
+        .w3l-blog .card-img-bottom { /* Adjusted for better naming */
+            width: 100%;
+            height: 220px; /* Fixed height for image consistency */
+            object-fit: cover; /* Ensure images cover the area */
+            border-radius: 8px 8px 0 0;
+        }
+        .w3l-blog .post-date {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .w3l-blog .card-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; /* Allow body to take remaining height */
+        }
+        .w3l-blog .blog-desc {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--heading-color);
+            text-decoration: none;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            display: block; /* Ensures desc acts as a block */
+            transition: color 0.3s ease;
+        }
+        .w3l-blog .blog-desc:hover {
+            color: var(--primary-color);
+        }
+        .w3l-blog .card-body p {
+            font-size: 0.95em;
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Pushes author info to bottom */
+        }
+
+        .w3l-blog .author {
+            display: flex;
+            align-items: center;
+            margin-top: auto; /* Pushes author to the bottom of the card */
+        }
+        .w3l-blog .author img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+        }
+        .w3l-blog .blog-meta {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .w3l-blog .blog-meta li {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 3px;
+        }
+        .w3l-blog .blog-meta li a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .w3l-blog .blog-meta li.blog-lesson .fa {
+            font-size: 0.8em;
+            margin-right: 5px;
+            color: #777;
+        }
+
+        /* Pagination */
+        .pagination-style {
+            margin-top: 40px;
+        }
+        .pagination-style ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-flex;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .pagination-style ul li {
+            margin: 0;
+        }
+        .pagination-style ul li a {
+            display: block;
+            padding: 10px 15px;
+            color: var(--heading-color);
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .pagination-style ul li a.active,
+        .pagination-style ul li a:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 5px; /* Apply to individual item on hover */
+        }
+        /* Adjust specific corners for first/last element on hover */
+        .pagination-style ul li:first-child a.active,
+        .pagination-style ul li:first-child a:hover {
+            border-radius: 5px 0 0 5px;
+        }
+        .pagination-style ul li:last-child a.active,
+        .pagination-style ul li:last-child a:hover {
+            border-radius: 0 5px 5px 0;
+        }
+        /* Remove border for middle items when active or hovered */
+        .pagination-style ul li a.active + li a,
+        .pagination-style ul li a:hover + li a {
+            border-left: none;
+        }
+
+
+        /* --- Single Blog Post Page Styling (for blog-post-1.html etc.) --- */
+        .w3l-blog-post {
+            background: #fff;
+        }
+        .w3l-blog-post .blog-content-left {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+        .w3l-blog-post .radius-image {
+            border-radius: 8px;
+        }
+        .w3l-blog-post .blog-author-info {
+            margin-top: 25px;
+        }
+        .w3l-blog-post .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+        .w3l-blog-post .author-name {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--heading-color);
+            text-decoration: none;
+        }
+        .w3l-blog-post .author-name:hover {
+            color: var(--primary-color);
+        }
+        .w3l-blog-post .post-meta-date {
+            font-size: 0.9em;
+            color: #777;
+            display: block; /* Puts date on new line below author name */
+        }
+
+        .w3l-blog-post .post-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--heading-color);
+            line-height: 1.3;
+        }
+        .w3l-blog-post p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+        .w3l-blog-post h4 {
+            font-size: 1.6em;
+            font-weight: 600;
+            color: var(--heading-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        /* Blog Post Tags */
+        .blog-tags {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 25px;
+        }
+        .blog-tags span {
+            font-weight: 600;
+            color: var(--heading-color);
+            margin-right: 10px;
+        }
+        .blog-tags a {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #666;
+            text-decoration: none;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .blog-tags a:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Share Post Section */
+        .share-post {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .share-post span {
+            font-weight: 600;
+            color: var(--heading-color);
+        }
+        .share-post a.fa {
+            font-size: 1.4em;
+            color: #666;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+        .share-post a.fa-facebook-f:hover { color: #3b5998; }
+        .share-post a.fa-twitter:hover { color: #1da1f2; }
+        .share-post a.fa-linkedin:hover { color: #0077b5; }
+
+        /* Responsive adjustments for blog pages */
+        @media (max-width: 768px) {
+            .w3l-blog .item {
+                margin-bottom: 30px; /* Add space between stacked cards */
+            }
+            .w3l-blog .col-md-6.mt-md-0,
+            .w3l-blog .col-lg-4.mt-lg-0 {
+                margin-top: 30px !important;
+            }
+            .w3l-blog-post .post-title {
+                font-size: 1.8em;
+            }
+            .blog-tags {
+                text-align: center;
+            }
+            .blog-tags a {
+                margin-right: 5px;
+            }
+            .share-post {
+                flex-direction: column;
+                align-items: center;
+            }
+            .share-post span {
+                margin-bottom: 15px;
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .w3l-breadcrumb .w3ls-title {
+                font-size: 2em;
+            }
+            .w3l-blog .blog-desc {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke">
+                <h1><a class="navbar-brand mr-lg-5" href="index.html" aria-label="Rahim Homes homepage">
+                        <span>R</span>ahim Homes
+                    </a></h1>
+                <button class="navbar-toggler collapsed bg-gradient" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars" aria-hidden="true"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times" aria-hidden="true"></span>
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">Services</a>
+                        </li>
+                        <li class="nav-item active"> <a class="nav-link" href="blog.html">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Gallery.html">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item search-right">
+                            <a href="#search" title="Search"><span class="fa fa-search" aria-hidden="true"></span><span class="sr-only">Search button</span></a>
+                            <div id="search" class="pop-overlay" aria-modal="true" role="dialog" aria-label="Search popup">
+                                <div class="popup">
+                                    <form action="#" method="GET" class="search-box">
+                                        <label for="search-input" class="sr-only">Enter Keyword</label>
+                                        <input type="search" id="search-input" placeholder="Enter Keyword" name="search" required autofocus>
+                                        <button type="submit" class="btn" aria-label="Submit search"><span class="fa fa-search" aria-hidden="true"></span></button>
+                                    </form>
+                                </div>
+                                <a class="close" href="#close" aria-label="Close search popup">×</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox" aria-label="Toggle light and dark theme">
+                                <div class="mode-container">
+                                    <i class="gg-sun" aria-hidden="true"></i>
+                                    <i class="gg-moon" aria-hidden="true"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                </nav>
+        </div>
+    </header>
+
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <h2 class="w3ls-title">Our Blog</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Blog</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="w3l-blog py-5" id="blog">
+        <div class="container py-lg-5">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 item">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative">
+                            <a href="blog-post-1.html">
+                                <img class="card-img-bottom d-block radius-image" src="assets/images/blog1.jpg" alt="A beautifully landscaped garden with a modern house in the background.">
+                            </a>
+                            <div class="post-date">July 1, 2025</div>
+                        </div>
+                        <div class="card-body blog-details">
+                            <a href="blog-post-1.html" class="blog-desc">
+                                Top 5 Landscaping Ideas to Elevate Your Accra Home's Curb Appeal
+                            </a>
+                            <p>Discover innovative landscaping ideas perfect for Ghana's climate, from lush gardens to modern outdoor living spaces.</p>
+                            <div class="author align-items-center">
+                                <img src="assets/images/author1.jpg" alt="Author Rahim Homes Team" class="img-fluid rounded-circle">
+                                <ul class="blog-meta">
+                                    <li>
+                                        <a href="#author">By Rahim Homes Team</a>
+                                    </li>
+                                    <li class="meta-item blog-lesson">
+                                        <span class="fa fa-clock-o"></span> 5 min read
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative">
+                            <a href="blog-post-2.html">
+                                <img class="card-img-bottom d-block radius-image" src="assets/images/blog2.jpg" alt="A modern house exterior painted in a vibrant, weather-resistant color.">
+                            </a>
+                            <div class="post-date">June 20, 2025</div>
+                        </div>
+                        <div class="card-body blog-details">
+                            <a href="blog-post-2.html" class="blog-desc">
+                                Choosing the Right Exterior Paint Colors for Ghana's Climate
+                            </a>
+                            <p>Learn how to select durable and aesthetically pleasing paint colors that withstand Accra's weather challenges.</p>
+                            <div class="author align-items-center">
+                                <img src="assets/images/author2.jpg" alt="Author Design Expert" class="img-fluid rounded-circle">
+                                <ul class="blog-meta">
+                                    <li>
+                                        <a href="#author">By Design Expert</a>
+                                    </li>
+                                    <li class="meta-item blog-lesson">
+                                        <span class="fa fa-clock-o"></span> 7 min read
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 item mt-lg-0 mt-5">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative">
+                            <a href="blog-post-3.html">
+                                <img class="card-img-bottom d-block radius-image" src="assets/images/blog3.jpg" alt="A spacious outdoor patio with comfortable furniture, perfect for entertaining.">
+                            </a>
+                            <div class="post-date">June 5, 2025</div>
+                        </div>
+                        <div class="card-body blog-details">
+                            <a href="blog-post-3.html" class="blog-desc">
+                                The Benefits of Outdoor Living Spaces in Modern Ghanaian Homes
+                            </a>
+                            <p>Explore how patios, pergolas, and decks can enhance your lifestyle and increase your property value.</p>
+                            <div class="author align-items-center">
+                                <img src="assets/images/author3.jpg" alt="Author Rahim Homes Team" class="img-fluid rounded-circle">
+                                <ul class="blog-meta">
+                                    <li>
+                                        <a href="#author">By Rahim Homes Team</a>
+                                    </li>
+                                    <li class="meta-item blog-lesson">
+                                        <span class="fa fa-clock-o"></span> 6 min read
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 item mt-5">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative">
+                            <a href="blog-post-4.html">
+                                <img class="card-img-bottom d-block radius-image" src="assets/images/blog4.jpg" alt="Close-up of a waterproofed building foundation, showing protective layers.">
+                            </a>
+                            <div class="post-date">May 28, 2025</div>
+                        </div>
+                        <div class="card-body blog-details">
+                            <a href="blog-post-4.html" class="blog-desc">
+                                Essential Waterproofing Solutions for Homes in Ghana's Rainy Season
+                            </a>
+                            <p>Protect your home from the elements with our guide to effective waterproofing and damp prevention.</p>
+                            <div class="author align-items-center">
+                                <img src="assets/images/author4.jpg" alt="Author Construction Expert" class="img-fluid rounded-circle">
+                                <ul class="blog-meta">
+                                    <li>
+                                        <a href="#author">By Construction Expert</a>
+                                    </li>
+                                    <li class="meta-item blog-lesson">
+                                        <span class="fa fa-clock-o"></span> 8 min read
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 item mt-5">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative">
+                            <a href="blog-post-5.html">
+                                <img class="card-img-bottom d-block radius-image" src="assets/images/blog5.jpg" alt="A stylish modern residential gate with intricate detailing.">
+                            </a>
+                            <div class="post-date">May 15, 2025</div>
+                        </div>
+                        <div class="card-body blog-details">
+                            <a href="blog-post-5.html" class="blog-desc">
+                                Modern Gate Designs: Enhancing Security and Style in Accra
+                            </a>
+                            <p>Discover contemporary gate designs that offer both robust security and stunning curb appeal for your property.</p>
+                            <div class="author align-items-center">
+                                <img src="assets/images/author1.jpg" alt="Author Rahim Homes Team" class="img-fluid rounded-circle">
+                                <ul class="blog-meta">
+                                    <li>
+                                        <a href="#author">By Rahim Homes Team</a>
+                                    </li>
+                                    <li class="meta-item blog-lesson">
+                                        <span class="fa fa-clock-o"></span> 6 min read
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 item mt-5">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative">
+                            <a href="blog-post-6.html">
+                                <img class="card-img-bottom d-block radius-image" src="assets/images/blog6.jpg" alt="A renovated building facade with new plastering and fresh paint.">
+                            </a>
+                            <div class="post-date">April 30, 2025</div>
+                        </div>
+                        <div class="card-body blog-details">
+                            <a href="blog-post-6.html" class="blog-desc">
+                                Revitalize Your Home: The Impact of Façade Renovation
+                            </a>
+                            <p>A guide to modern façade renovation techniques that can dramatically uplift your home's exterior.</p>
+                            <div class="author align-items-center">
+                                <img src="assets/images/author3.jpg" alt="Author Architecture Insights" class="img-fluid rounded-circle">
+                                <ul class="blog-meta">
+                                    <li>
+                                        <a href="#author">By Architecture Insights</a>
+                                    </li>
+                                    <li class="meta-item blog-lesson">
+                                        <span class="fa fa-clock-o"></span> 7 min read
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 item mt-5">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative">
+                            <a href="blog-post-7.html">
+                                <img class="card-img-bottom d-block radius-image" src="assets/images/blog7.jpg" alt="A home with solar panels on the roof and a rainwater harvesting system, showcasing eco-friendly design.">
+                            </a>
+                            <div class="post-date">April 15, 2025</div>
+                        </div>
+                        <div class="card-body blog-details">
+                            <a href="blog-post-7.html" class="blog-desc">
+                                Eco-Friendly Exterior Design: Sustainable Choices for Ghanaian Homes
+                            </a>
+                            <p>Explore sustainable materials and practices for a beautiful, environmentally conscious exterior.</p>
+                            <div class="author align-items-center">
+                                <img src="assets/images/author2.jpg" alt="Author Green Living Expert" class="img-fluid rounded-circle">
+                                <ul class="blog-meta">
+                                    <li>
+                                        <a href="#author">By Green Living Expert</a>
+                                    </li>
+                                    <li class="meta-item blog-lesson">
+                                        <span class="fa fa-clock-o"></span> 9 min read
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 item mt-5">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative">
+                            <a href="blog-post-8.html">
+                                <img class="card-img-bottom d-block radius-image" src="assets/images/blog8.jpg" alt="A person cleaning the exterior wall of a house, representing maintenance.">
+                            </a>
+                            <div class="post-date">March 28, 2025</div>
+                        </div>
+                        <div class="card-body blog-details">
+                            <a href="blog-post-8.html" class="blog-desc">
+                                The Importance of Regular Exterior Maintenance for Your Home
+                            </a>
+                            <p>Learn why routine upkeep of your home's exterior is crucial for longevity and aesthetic appeal.</p>
+                            <div class="author align-items-center">
+                                <img src="assets/images/author4.jpg" alt="Author Home Care Specialist" class="img-fluid rounded-circle">
+                                <ul class="blog-meta">
+                                    <li>
+                                        <a href="#author">By Home Care Specialist</a>
+                                    </li>
+                                    <li class="meta-item blog-lesson">
+                                        <span class="fa fa-clock-o"></span> 5 min read
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 item mt-5">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative">
+                            <a href="blog-post-9.html">
+                                <img class="card-img-bottom d-block radius-image" src="assets/images/blog9.jpg" alt="Architectural drawings overlaid with a photo of a completed modern home, symbolizing concept to reality.">
+                            </a>
+                            <div class="post-date">March 10, 2025</div>
+                        </div>
+                        <div class="card-body blog-details">
+                            <a href="blog-post-9.html" class="blog-desc">
+                                From Concept to Reality: A Rahim Homes Project Journey
+                            </a>
+                            <p>Follow us through a recent project, showcasing our detailed process from initial idea to stunning completion.</p>
+                            <div class="author align-items-center">
+                                <img src="assets/images/author1.jpg" alt="Author Rahim Homes Team" class="img-fluid rounded-circle">
+                                <ul class="blog-meta">
+                                    <li>
+                                        <a href="#author">By Rahim Homes Team</a>
+                                    </li>
+                                    <li class="meta-item blog-lesson">
+                                        <span class="fa fa-clock-o"></span> 10 min read
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="pagination-style text-center mt-5">
+                    <ul>
+                        <li><a href="#page-prev" class="prev">Prev</a></li>
+                        <li><a href="#page-1" class="active">1</a></li>
+                        <li><a href="#page-2">2</a></li>
+                        <li><a href="#page-next" class="next">Next</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="w3l-footer7">
+        <div class="footer7 py-5">
+            <div class="container py-lg-3">
+                <div class="footer-destinations mb-5 text-center">
+                    <h5>Designing Your Exterior Dreams Into Reality! </h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="Gallery.html">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="d-grid grid-col-3 footer-top7">
+                    <div class="footer-list7 mt-4">
+                        <h6 class="footer-title7">Quick links</h6>
+                        <ul>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="#url">Privacy & Policy</a></li>
+                            <li><a href="contact.html">Map & Location</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-list7 mt-4">
+                        <h6 class="footer-title7">Newsletter sign up</h6>
+                        <form action="#" method="post" class="footer-newsletter">
+                            <label for="emailInput" class="sr-only">Email Address</label>
+                            <input type="email" name="email" id="emailInput" placeholder="Email Address" required="">
+                            <button type="submit" class="btn btn-style btn-primary w-100 mt-3">Subscribe</button>
+                        </form>
+                    </div>
+                    <div class="footer-list7 mt-4">
+                        <h6 class="footer-title7">Contact Info</h6>
+                        <ul class="contacts">
+                            <li><i class="fa fa-map-marker" aria-hidden="true"></i> 123 Accra, Ghana, West Africa</li>
+                            <li><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:+233-24-123-4567">+233-24-123-4567</a></li>
+                            <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@rahimhomes.com">info@rahimhomes.com</a></li>
+                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> Mon - Sat 8:00AM - 6:00PM</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copy-right-grid text-center">
+                    <p class="copy-footer-29">© 2025 Rahim Homes. All rights reserved <a href="https://w3layouts.com" target="_blank"></a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        // Toggle theme switch
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+
+            if (currentTheme === 'dark') {
+                toggleSwitch.checked = true;
+            }
+        }
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        toggleSwitch.addEventListener('change', switchTheme, false);
+
+        // Navbar toggler for small screens
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+</body>
+</html>
